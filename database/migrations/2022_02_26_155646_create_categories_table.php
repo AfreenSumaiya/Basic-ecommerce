@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name',128)->unique();
             $table->string('slug',128)->unique();
             $table->string('banner',128);
-            $table->unsignedBigInteger('category_id')->default(0);
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
